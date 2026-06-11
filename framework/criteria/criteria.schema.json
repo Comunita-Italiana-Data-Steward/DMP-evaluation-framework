@@ -21,6 +21,7 @@
           "examples": {
             "type": ["array", "null"],
             "uniqueItems": true,
+            "maxItems": 3,
             "items": {
               "type": "object",
               "properties": {

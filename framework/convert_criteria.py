@@ -10,6 +10,8 @@ This script converts the criteria file into some other file format.
 
 It fist validates the data against the schema, to check for any problems before
 proceeding.
+
+TODO: This template doesn't really handle more than three examples.
 """
 
 PDF_PRELUDE = """
