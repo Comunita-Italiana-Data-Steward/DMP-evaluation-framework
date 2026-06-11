@@ -138,6 +138,32 @@ They are only there to give a sense of which statements might fulfill each crite
 Most of the criteria presented here are inspired by the [ScienceEurope DMP Evaluation Guide](https://scienceeurope.org/our-resources/practical-guide-to-the-international-alignment-of-research-data-management/).
 The criteria presented in the document were heavily expanded and iterated upon to create the framework.
 
+## Contributing to the guide
+The framework is open for contributions from everyone!
+Please refer to the [Contributing Guide](CONTRIBUTING.md) for more information.
+
+Contributors are expected to follow the [Code of Conduct](CODE_OF_CONDUCT.md) of this repository.
+
+> [!TIP]
+> You don't need any particular experience to contribute!
+> We accept and treasure contributions also from non-experts in the field of DMP writing or reviewing, such as fixing typos, providing feedback, and more.
+> Refer to the contributing guide to learn more.
+> Thank you!
+
+## Citing the framework
+If you use the framework and would like to cite it, please use the following:
+> "DMP Evaluation Framework", Comunita' Italiana Data Steward, https://github.com/Comunita-Italiana-Data-Steward/DMP-evaluation-framework
+
+> [!NOTE]
+> A proper DOI will come soon!
+
+## Useful contacts
+This project is part of the Comunita' Italiana Data Steward (CIDS), and in particular in the Gruppo di Lavoro Data Management Plan (GdL DMP).
+
+If you wish to get in touch, you may contact [anyone on the Coordinator Board of the CIDS](https://github.com/Comunita-Italiana-Data-Steward/.github/blob/main/COORDINATORS.md), or, for issues regarding this project in particular, the co-chairs of the GdL DMP:
+- Andrea Tarallo (andrea.tarallo@cnr.it)
+- Luca Visentin (luca.visentin@polimi.it)
+
 ## Contributing to the DMP Evaluation Framework
 Please refer to the [contributing guide](CONTRIBUTING.md).
 
