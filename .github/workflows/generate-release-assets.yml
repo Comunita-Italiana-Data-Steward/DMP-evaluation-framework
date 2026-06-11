@@ -1,0 +1,46 @@
+name: Generate release assets
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-upload:
+    name: Build PDF and CSV and attach to release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Generate CSV
+        working-directory: framework
+        run: |
+          python convert_criteria.py \
+            criteria/criteria.json csv ../criteria.csv \
+            criteria/criteria.schema.json
+
+      - name: Generate PDF
+        working-directory: framework
+        run: |
+          python convert_criteria.py \
+            criteria/criteria.json pdf ../criteria.pdf \
+            criteria/criteria.schema.json
+
+      - name: Upload CSV to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            criteria.csv
+            criteria.pdf
