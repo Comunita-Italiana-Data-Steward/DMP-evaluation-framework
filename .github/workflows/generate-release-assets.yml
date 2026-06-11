@@ -8,6 +8,8 @@ jobs:
   build-and-upload:
     name: Build PDF and CSV and attach to release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
