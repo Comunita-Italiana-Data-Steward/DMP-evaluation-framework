@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://schemas.hedmad.eu/dmp_evaluation_criteria.json",
+  "title": "DMP Evaluation Criteria JSON Schema",
+  "description": "This schema validates DMP Evaluation criteria",
+
+  "type": "object",
+  "properties": {
+    "criteria": {
+      "description": "This array contains all the critiera objects",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "scoring": { "type": "string" },
+          "description": { "type": "string" },
+          "rationale": { "type": ["string", "null"] },
+          "examples": {
+            "type": ["array", "null"],
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "examples": {
+                  "type": ["array"],
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1
+                }
+              },
+              "required": ["title", "examples"]
+            }
+          }
+        },
+        "required": [
+          "description",
+          "id",
+          "title",
+          "scoring",
+          "rationale",
+          "examples"
+        ]
+      }
+    }
+  }
+}

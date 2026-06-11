@@ -1,5 +1,5 @@
-import xml.etree.ElementTree as ET
 import json
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 """Converts the Word XML obtained via Pandoc to the Json file

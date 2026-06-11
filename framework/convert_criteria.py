@@ -1,7 +1,16 @@
 import json
+import subprocess as sb
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-import subprocess as sb
+
+from jsonschema.validators import validate
+
+"""
+This script converts the criteria file into some other file format.
+
+It fist validates the data against the schema, to check for any problems before
+proceeding.
+"""
 
 PDF_PRELUDE = """
 #let example_table(ful, not_ful, part_ful: none) = {
@@ -25,11 +34,15 @@ PDF_PRELUDE = """
   )
 }
 
+#set page(paper:"a4")
+
+= DMP Evaluation Criteria
+
 """
 
 
 def to_pdf(obj, output_path: Path):
-    base_str = "\n== \[{id}\] {title}\n{scoring}\n{description}\n"
+    base_str = "\n== \\[{id}\\] {title}\n{scoring}\n\n{description}\n"
     formatted_pdf = PDF_PRELUDE
 
     for criteria in obj:
@@ -41,24 +54,28 @@ def to_pdf(obj, output_path: Path):
         )
 
         if criteria["rationale"] is not None:
-            this_str += f"*Rationale*: {criteria['rationale']}\n"
+            this_str += f"\n*Rationale*: {criteria['rationale']}\n"
 
         if criteria["examples"] is not None:
             table_strs = []
             for example in criteria["examples"]:
-                blob = [f"- {x}" for x in example["examples"]]
+                blob = [f"- {x.strip()}" for x in example["examples"]]
                 table_strs.append(f"[{'\n'.join(blob)}]")
             assert len(table_strs) <= 3
-            this_str += f"#example_table({', '.join(table_strs)})\n"
+            if len(table_strs) < 3:
+                this_str += f"#example_table({', '.join(table_strs)})\n"
+            else:
+                this_str += f"#example_table({table_strs[0]}, {table_strs[2]}, part_ful:{table_strs[1]})"
 
         formatted_pdf += this_str
 
-    print(formatted_pdf)
+    # Sanitize possible escape codes
+    formatted_pdf = formatted_pdf.replace("@", r"\@")
 
     with NamedTemporaryFile("w") as conn:
         conn.write(formatted_pdf)
         conn.flush()
-        print(f"Compiling PDF {conn.name} to {output_path}")
+        print(f"Compiling PDF {conn.name} to {output_path}...")
         out = sb.run(["typst", "compile", conn.name, output_path], capture_output=True)
 
     print(out.stdout.decode("UTF-8"))
@@ -70,11 +87,25 @@ def to_pdf(obj, output_path: Path):
 
 def main(args):
     with args.criteria_json.open("r") as obj:
-        raw_json = json.load(obj)["criteria"]
+        raw_json = json.load(obj)
+
+    if not args.skip_validation:
+        if args.schema is None:
+            raise ValueError(
+                "No schema provided, and validation is requested (pass --skip-validation to skip)"
+            )
+        with args.schema.open("r") as obj:
+            schema = json.load(obj)
+
+        print("Validating data using provided schema...")
+        validate(schema=schema, instance=raw_json)
+        print("Data adheres to the JSON schema!")
 
     match args.output_type:
         case "pdf":
-            to_pdf(raw_json, args.output_file)
+            to_pdf(raw_json["criteria"], args.output_file)
+
+    print("Done!")
 
 
 if __name__ == "__main__":
@@ -82,9 +113,33 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("criteria_json", type=Path)
-    parser.add_argument("output_type", choices=["pdf"])
-    parser.add_argument("output_file", type=Path)
+    parser.add_argument(
+        "criteria_json", type=Path, help="(Full) path to the criteria in JSON format"
+    )
+    parser.add_argument(
+        "output_type",
+        choices=["pdf"],
+        help="Desired output format. Currently supports only PDF",
+    )
+    parser.add_argument(
+        "output_file",
+        type=Path,
+        help="Path to the output file. Extension is NOT set automatically",
+    )
+    parser.add_argument(
+        "schema",
+        type=Path,
+        nargs="?",
+        default=None,
+        help="Path to the schema file for preliminary validation",
+    )
+
+    parser.add_argument(
+        "-s",
+        "--skip-validation",
+        action="store_true",
+        help="Skip validation before conversion",
+    )
 
     args = parser.parse_args()
 

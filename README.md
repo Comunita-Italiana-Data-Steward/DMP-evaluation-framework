@@ -1,18 +1,21 @@
 # DMP Evaluation Framework
+[![All Contributors](https://img.shields.io/github/all-contributors/Comunita-Italiana-Data-Steward/DMP-evaluation-framework?color=ee8449&style=flat-square)](#contributors)
 
-This is an attempt of creating a framework to evaluate Data Management Plans.
+This is an attempt of creating a framework to evaluate Data Management Plans (DMPs) throughout their lifetime.
 
-To evaluate qualitatively Data Management Plans (DMPs) but at the same time allow comparing them with each other, a framework is needed. 
+With "DMP Framework" we mean a list of characteristics that are seen as *a priori* desirable in the DMP, so that we can check if the DMP fulfills them or not.
 
-A framework is a list of characteristics that are seen as *a priori* desirable in the DMP, so that we can check if the DMP fulfills them or not.
-Without a framework, the evaluation would be completely arbitrary and up to the reviewer’s internal standards and expectations. 
+Without a framework, the evaluation would be completely arbitrary and up to the reviewer’s internal standards and expectations.
 
+This is the sister repository to the [Guide on Writing Data Management Plans](https://github.com/Comunita-Italiana-Data-Steward/DMP-guide).
+
+## Evaluation criteria
 Each characteristic, or “criterium”, must be as punctiform as possible as to be just “fulfilled” or “not fulfilled”, reducing the need for interpretation or personal opinion to a minimum.
 
 A criterium looks like this:
 
 ---
-## [Criterium ID] Criterium short, expressive title
+## [Criterium ID] The criterium short, expressive title
 Applicable only if... Scored as ...
 
 A longer description of the criterium, claryfing what parts of the DMP it is trying to check, and how.
@@ -24,9 +27,44 @@ Examples of phrases in the DMP that would fulfill this criterium, and phrases th
 
 ---
 
+To increase machine interoperability, the criteria are stored as a JSON list, in which each item is a dictionary containing information for a single criteria.
+
+The structure of the JSON file adheres to the included [JSON Schema](https://json-schema.org/) file available [here](framework/criteria/criteria.schema.json).
+In short, it is a list of criteria (under the key `criteria`), each looking like this:
+
+```json
+{
+    "id": "X.xxx.1",
+    "title": "Title of criterium",
+    "scoring": "Scored as ...",
+    "description": "The longer description of the criterium",
+    "rationale": "The rationale of the criterium, or NULL",
+    "examples": [ // This may be NULL if no examples are provided
+        {
+            "title": "First example title",
+            "examples": [
+                "First example, line 1",
+                "First example, line 2",
+                "..."
+            ]
+        },
+        {
+          "title": "Second example title",
+          "examples": [
+              "Second example, line 1",
+              "Second example, line 2",
+              "..."
+          ]
+        }
+    ]
+}
+```
+
+### Scoring
 Each criterium is scored in two ways: fully boolean (1 or 0) or partial (1, 0.5 or 0).
 The criterium description tells you what they mean, especially for partial compliance.
 
+### Applicability
 Criteria starting with “IA” (If Applicable), might not be relevant to every DMP.
 The description of the criterium states where it is applicable.
 If not relevant, score that point as NA.
@@ -43,6 +81,25 @@ Usually, criteria starting with “Indicates...” require mandatory information
 It is not enough to state that this information is not given for X or Y reasons.
 On the other hand, criteria starting with “Addresses...” can be fulfilled by a rejection statement (“Information is not give due to...”), if the omission is properly defended.
 
+### Criteria weights
+Optionally, weights can be applied to each criteria that describes what happens if the criterium is not fulfilled. Suggested weight interpretations are as follows: 
+1. **Marginally important.**
+   The quality of the (projected) RDM is marginally affected. 
+2. **Low importance.**
+   The quality of the (projected) RDM is impacted slightly, and there might be a small loss of reusability. 
+3. **Medium importance.**
+   The ability to work with the data is affected, and the quality of the (projected) RDM in general is diminished.
+   There might be repercussions in the quality of the shared data and its ability to be reused. 
+4. **High importance.**
+   The quality of the shared data is greatly diminished or impeded, and there might be problems related to data management during the project. 
+5. **Extreme importance.**
+   It is impossible or extremely hard to properly manage the project’s data, or key information regarding it is missing.
+   Effective data sharing is impossible, and it is impossible to know if problems regarding data may arise during the project.
+
+## Important concepts to keep in mind
+The criteria have been developed with the following non-intuitive opinions in mind.
+Do consider them if you plan to use the framework to evaluate your own DMPs.
+
 ### A note about software
 Software is executable data.
 Treat it like a normal data type but consider if it can be used on its own (e.g. executable files) or requires specific runtime environments (e.g. python scripts, R scripts, some executable files require external libraries, etc...).
@@ -51,20 +108,33 @@ Treat it like a normal data type but consider if it can be used on its own (e.g.
 All examples are completely fabricated, and might mention non-existing repositories, improbable situation or otherwise absurd suggestions.
 They are only there to give a sense of which statements might fulfill each criterium.
 
-## Criteria weights
-Optionally, weights can be applied to each criteria that describes what happens if the criterium is not fulfilled. Suggested weight interpretations are as follows: 
-1. Marginally important.
-   The quality of the (projected) RDM is marginally affected. 
-2. Low importance.
-   The quality of the (projected) RDM is impacted slightly, and there might be a small loss of reusability. 
-3. Medium importance.
-   The ability to work with the data is affected, and the quality of the (projected) RDM in general is diminished.
-   There might be repercussions in the quality of the shared data and its ability to be reused. 
-4. High importance.
-   The quality of the shared data is greatly diminished or impeded, and there might be problems related to data management during the project. 
-5. Extreme importance.
-   It is impossible or extremely hard to properly manage the project’s data, or key information regarding it is missing.
-   Effective data sharing is impossible, and it is impossible to know if problems regarding data may arise during the project.
-
 ## Sources
-Most of the criteria presented here are inspired by the 
+Most of the criteria presented here are inspired by the [ScienceEurope DMP Evaluation Guide](https://scienceeurope.org/our-resources/practical-guide-to-the-international-alignment-of-research-data-management/).
+The criteria presented in the document were heavily expanded and iterated upon to create the framework.
+
+## Contributing to the DMP Evaluation Framework
+Please refer to the [contributing guide](CONTRIBUTING.md).
+
+### All contributors
+
+All contributions to this project are tracked by the [All Contributors Bot](https://allcontributors.org/en/).
+
+Thank you to these wonderful people!
+<!-- THIS NEXT LINE MUST REMAIN EMPTY! -->
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://mrhedmad.github.io/blog/"><img src="https://avatars.githubusercontent.com/u/46203625?v=4?s=100" width="100px;" alt="Luca "Hedmad" Visentin"/><br /><sub><b>Luca "Hedmad" Visentin</b></sub></a><br /><a href="#content-MrHedmad" title="Content">🖋</a> <a href="#doc-MrHedmad" title="Documentation">📖</a> <a href="#example-MrHedmad" title="Examples">💡</a> <a href="#projectManagement-MrHedmad" title="Project Management">📆</a> <a href="#tutorial-MrHedmad" title="Tutorials">✅</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Mauropask"><img src="https://avatars.githubusercontent.com/u/272837804?v=4?s=100" width="100px;" alt="Mauro Paschetta"/><br /><sub><b>Mauro Paschetta</b></sub></a><br /><a href="#review-Mauropask" title="Reviewed Pull Requests">👀</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
