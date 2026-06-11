@@ -77,6 +77,11 @@ python convert_criteria.py -s criteria/criteria.json pdf out.pdf
 ```
 In any case, you can learn more about how to use the script with `python convert_criteria.py --help`.
 
+## Criteria characteristics
+
+Each criterium has a few characteristics.
+Here they are described in detail:
+
 ### Scoring
 Each criterium is scored in two ways: fully boolean (1 or 0) or partial (1, 0.5 or 0).
 The criterium description tells you what they mean, especially for partial compliance.
@@ -113,6 +118,10 @@ Optionally, weights can be applied to each criteria that describes what happens 
    It is impossible or extremely hard to properly manage the project’s data, or key information regarding it is missing.
    Effective data sharing is impossible, and it is impossible to know if problems regarding data may arise during the project.
 
+> [!IMPORTANT]
+> Currently, the JSON file does not contain any weights.
+> They will be potentially added later on.
+
 ## Important concepts to keep in mind
 The criteria have been developed with the following non-intuitive opinions in mind.
 Do consider them if you plan to use the framework to evaluate your own DMPs.
@@ -142,14 +151,6 @@ Thank you to these wonderful people!
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://mrhedmad.github.io/blog/"><img src="https://avatars.githubusercontent.com/u/46203625?v=4?s=100" width="100px;" alt="Luca "Hedmad" Visentin"/><br /><sub><b>Luca "Hedmad" Visentin</b></sub></a><br /><a href="#content-MrHedmad" title="Content">🖋</a> <a href="#doc-MrHedmad" title="Documentation">📖</a> <a href="#example-MrHedmad" title="Examples">💡</a> <a href="#projectManagement-MrHedmad" title="Project Management">📆</a> <a href="#tutorial-MrHedmad" title="Tutorials">✅</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Mauropask"><img src="https://avatars.githubusercontent.com/u/272837804?v=4?s=100" width="100px;" alt="Mauro Paschetta"/><br /><sub><b>Mauro Paschetta</b></sub></a><br /><a href="#review-Mauropask" title="Reviewed Pull Requests">👀</a></td>
-    </tr>
-  </tbody>
-</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
