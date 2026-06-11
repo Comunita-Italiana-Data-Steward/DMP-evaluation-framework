@@ -60,6 +60,23 @@ In short, it is a list of criteria (under the key `criteria`), each looking like
 }
 ```
 
+### Converting from JSON
+Working with JSON while using the framework is unwieldy.
+To side-step this, a Python script ([`convert_criteria.py`](framework/convert_criteria.py)) is available to convert the JSON file to either PDF or CSV.
+
+Use it by installing the required packages (see the [`requirements.txt`](requirements.txt) file) and launching (inside the `framework` folder):
+
+To get a CSV file:
+```bash
+python convert_criteria.py -s criteria/criteria.json csv out.csv
+```
+
+To get a PDF file:
+```bash
+python convert_criteria.py -s criteria/criteria.json pdf out.pdf
+```
+In any case, you can learn more about how to use the script with `python convert_criteria.py --help`.
+
 ### Scoring
 Each criterium is scored in two ways: fully boolean (1 or 0) or partial (1, 0.5 or 0).
 The criterium description tells you what they mean, especially for partial compliance.
