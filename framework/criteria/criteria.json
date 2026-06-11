@@ -1672,7 +1672,7 @@
     },
     {
       "id": "F.open.3",
-      "title": "",
+      "title": "IA - Indicates why metadata cannot be shared openly",
       "scoring": "Only applicable if some (meta)data types cannot be shared. Scored as either 0 (not fulfilled), 0.5 (partially fulfilled) or 1 (fulfilled).",
       "description": "For each data type which will not be shared openly, specifies why even metadata cannot be shared. Not fulfilled if even one metadata type which is not shared is not accompanied by an adequate description of the reasons for not sharing.",
       "rationale": "A reason to *not* share must be given to follow the \u201cas open as possible, as closed as necessary\u201d philosophy. Metadata can (and should) usually be shared even if the data is under embargo or cannot be shared for some other reason.",
