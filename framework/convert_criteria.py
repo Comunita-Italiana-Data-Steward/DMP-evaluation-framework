@@ -1,3 +1,4 @@
+import csv
 import json
 import subprocess as sb
 from pathlib import Path
@@ -87,6 +88,28 @@ def to_pdf(obj, output_path: Path):
         out.check_returncode()
 
 
+def take_section(id):
+    pieces = id.split(r".")
+    return ".".join(pieces[0:2])
+
+
+assert take_section("A.one.1") == "A.one"
+
+
+def to_csv(obj, output_path: Path):
+    obj.sort(key=lambda x: x["id"])
+    res = [
+        ["section", "criteria_id", "criteria"],
+    ]
+    for criteria in obj:
+        res.append([take_section(criteria["id"]), criteria["id"], criteria["title"]])
+
+    print(f"Writing {len(res) - 1} criteria to {output_path}...")
+    with output_path.open("w+") as sink:
+        writer = csv.writer(sink, delimiter=",")
+        writer.writerows(res)
+
+
 def main(args):
     with args.criteria_json.open("r") as obj:
         raw_json = json.load(obj)
@@ -106,6 +129,8 @@ def main(args):
     match args.output_type:
         case "pdf":
             to_pdf(raw_json["criteria"], args.output_file)
+        case "csv":
+            to_csv(raw_json["criteria"], args.output_file)
 
     print("Done!")
 
@@ -120,7 +145,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "output_type",
-        choices=["pdf"],
+        choices=["pdf", "csv"],
         help="Desired output format. Currently supports only PDF",
     )
     parser.add_argument(
