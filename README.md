@@ -164,10 +164,7 @@ If you wish to get in touch, you may contact [anyone on the Coordinator Board of
 - Andrea Tarallo (andrea.tarallo@cnr.it)
 - Luca Visentin (luca.visentin@polimi.it)
 
-## Contributing to the DMP Evaluation Framework
-Please refer to the [contributing guide](CONTRIBUTING.md).
-
-### All contributors
+## All contributors
 
 All contributions to this project are tracked by the [All Contributors Bot](https://allcontributors.org/en/).
 
