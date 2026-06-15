@@ -181,6 +181,7 @@ Thank you to these wonderful people!
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://mrhedmad.github.io/blog/"><img src="https://avatars.githubusercontent.com/u/46203625?v=4?s=100" width="100px;" alt="Luca "Hedmad" Visentin"/><br /><sub><b>Luca "Hedmad" Visentin</b></sub></a><br /><a href="#code-MrHedmad" title="Code">💻</a> <a href="#doc-MrHedmad" title="Documentation">📖</a> <a href="#infra-MrHedmad" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#projectManagement-MrHedmad" title="Project Management">📆</a> <a href="#tool-MrHedmad" title="Tools">🔧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/datara44"><img src="https://avatars.githubusercontent.com/u/151728262?v=4?s=100" width="100px;" alt="datara44"/><br /><sub><b>datara44</b></sub></a><br /><a href="#doc-datara44" title="Documentation">📖</a> <a href="#ideas-datara44" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
