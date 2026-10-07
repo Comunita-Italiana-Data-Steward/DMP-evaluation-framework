@@ -984,7 +984,7 @@
       ]
     },
     {
-      "id": "C.quality.2",
+      "id": "C.quality.5",
       "title": "Indicates how metadata will be checked and validated",
       "scoring": "Scored as either 0 (not fulfilled) or 1 (fulfilled).",
       "description": "Considers whether metadata quality will be checked, and if so, how. This may be done through metadata ingestion protocols, specific people that will provide testing, or other automatic, semiautomatic or manual procedures. The same criterium for data is given in C.quality.4.",
@@ -1007,7 +1007,7 @@
       ]
     },
     {
-      "id": "C.quality.3",
+      "id": "C.quality.6",
       "title": "Indicates if calibration is needed and how it will be done",
       "scoring": "Only applicable if instruments are used in the project (e.g. not relevant for purely theoretical work). Scored as either 0 (not fulfilled), 0.5 (partially fulfilled) or 1 (fulfilled).",
       "description": "Some instruments require calibration using standards, either internally or externally sourced. This criterium is fulfilled if either standards will be used and the DMP states how, or, alternatively, if instrument calibration is handled by some other party or is assured to be satisfactory thanks to some process external to the project.\nThe distinction of which instruments require calibration and which do not is left to reviewer expertise. However, consider official guidelines such as ISO 9001 (Clause 7.1.5, *Monitoring and Measuring Resources*) to inform the decision.",
