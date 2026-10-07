@@ -78,6 +78,31 @@
       ]
     },
     {
+  "id": "A.date.1",
+  "title": "Indicates the date(s) of DMP publication",
+  "scoring": "Scored as either 1 (fulfilled) or 0 (not fulfilled).",
+  "description": "Clearly states the publication date of the current version of the DMP. For the purposes of this criterion, \"publication\" includes formal submission of the DMP as a project deliverable, deposit or publication in a portal or repository, or the release of an updated version. The date must include day, month and year and be expressed in an unambiguous format. If publication dates for previous versions are also provided, each date must be clearly associated with the corresponding version.",
+  "rationale": "The publication date provides the temporal context needed to identify when a specific version of the DMP was formally issued, submitted, deposited or updated, and to distinguish it from earlier or subsequent versions.",
+  "examples": [
+    {
+      "title": "Fulfilled examples",
+      "examples": [
+        "DMP publication date: 15 May 2026",
+        "DMP version 2.1 - submitted as project deliverable D1.2 on 15 May 2026",
+        "DMP version 2.1 deposited in Zenodo on 15 May 2026 (DOI: https://doi.org/10.xxxx/xxxx)"
+      ]
+    },
+    {
+      "title": "Not fulfilled examples",
+      "examples": [
+        "*No indication of the DMP publication date.*",
+        "DMP version 2.1 (*version stated, but no publication date*).",
+        "Published: May 2026 (*day of publication is not indicated*)."
+      ]
+    }
+  ]
+},
+    {
       "id": "A.prog.1",
       "title": "IA - Indicates the funding program and funding body",
       "scoring": "Applies only when the DMP is written for a funded project with a specific program (e.g. Horizon Europe). Scored as 1 (fulfilled), 0 (not fulfilled) or NA (not applicable).",
